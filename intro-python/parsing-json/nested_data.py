@@ -32,7 +32,13 @@ here = os.path.abspath(os.path.dirname(__file__))
 
 
 with open(os.path.join(here, "interfaces.json")) as file:
+    if_data = json.loads(file.read())
     # TODO: Parse the contents of the JSON file into a variable
+
+    for interface in if_data['ietf-interfaces:interfaces']['interface']:
+        print(f"Interface Name: {interface['name']}")
+        print(f"IP Address: {interface['ietf-ip:ipv4']['address'][0]['ip']}")
+        print(f"Netmask: {interface['ietf-ip:ipv4']['address'][0]['netmask']}\n")
 
 
 # TODO: Loop through the interfaces in the JSON data and print out each
